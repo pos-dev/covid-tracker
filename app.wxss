@@ -1,0 +1,68 @@
+/**app.wxss**/
+@import 'miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+.container {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+
+.section {
+  width: 100%;
+  padding: 4vh 0;
+  color: rgb(235, 235, 235);
+}
+
+.inner-section {
+  width: 92%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 48rpx;
+}
+
+h2 {
+  font-size: 40rpx;
+}
+
+p {
+  font-size: 35rpx;
+}
+
+.small {
+  font-size: 25rpx;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.button {
+  padding: 24rpx 0rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+  background-color: rgb(13, 111, 156);
+  color: rgb(235, 235, 235);
+  box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.3), inset 5px 5px 8px rgba(255, 255, 255, 0.5), inset -5px -5px 8px rgba(0, 0, 0, 0.3);
+}
+
+.footer-section {
+  background-color: rgb(27, 27, 27);
+}
+
+.footer-section-text {
+  margin: 0 auto;
+}

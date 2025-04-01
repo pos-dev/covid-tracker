@@ -1,0 +1,180 @@
+<!--index.wxml-->
+<!-- <scroll-view class="scrollarea" scroll-y type="list"> -->
+<view class="container">
+  
+  <view class="home-header-section section">
+    <view class="inner-section">
+      <view class="home-header-image-holder">
+        <image class="home-header-image" src="../../assets/images/marylandFlag.png" mode="widthFix"></image>
+      </view>
+      <view class="home-header-text-holder">
+        <h1 class="bold">Covid-19 Tracker</h1>
+      </view>
+    </view>
+  </view>
+
+  <view class="user-login-section section">
+    <view class="inner-section">
+      <block wx:if="{{hasUserInfo}}">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <view class="userinfo-name-text-hoolder">
+          <p class="bold">Welcome {{userInfo.nickName}}</p>
+          <p class="date">Date: {{headerDate}}</p>
+        </view>
+        <button class="userinfo-signout button" bindtap="logoutUser">
+        Logout
+        </button>
+      </block>
+
+      <block wx:else>
+        <image class="userinfo-avatar" src="../../assets/images/defaultProfilePicture.png" mode="cover" bindtap="getUserProfile"></image>
+        <view class="userinfo-name-text-hoolder">
+          <p class="bold">Not signed in</p>
+          <p class="date">Date: {{headerDate}}</p>
+        </view>
+        <button class="userinfo-signin-button button" bindtap="getUserProfile">
+        Login
+        <mp-icon type="field" icon="group-detail" color="{{iconColorWhite}}" size="{{iconSizeNormal}}"></mp-icon>
+        </button>
+      </block>
+    </view>
+  </view>
+
+  <mp-dialog mask="{{logoutDialogMask}}" mask-closable="{{logoutDialogMaskClosable}}" title="Are you sure?" show="{{logoutDialogShowSwitchToggle}}" bindbuttontap="confirmLogoutUser" buttons="{{logoutDialogButtons}}">
+    <view>You won't see your Saved Counties</view>
+    <view>-</view>
+    <view>View them again by loggin in</view>
+  </mp-dialog>
+
+  <view class="saved-counties-section section">
+    <view class="saved-counties-inner-section inner-section">
+    
+      <block wx:if="{{hasUserInfo}}">
+        <swiper class="swiper-container" indicator-dots="true" circular="true" previous-margin="70rpx" next-margin="70rpx" autoplay="{{true}}" interval="3000">
+        
+          <block wx:if="{{savedCountiesSwiperItems.length > 0}}">
+            <block wx:for="{{savedCountiesSwiperItems}}" wx:key="this">
+
+              <swiper-item class="swiper-item">
+                <view class="swiper-item-inner swiper-item-inner-{{item.riskLevel}}">
+                  
+                  <view class="swiper-item-map-holder">
+                    <image src="../../assets/images/countyMaps/{{item.plainName}}-{{item.riskLevel}}.png" class="swiper-item-map-image" mode="widthFix"></image>
+                  </view>
+
+                  <view class="swiper-item-text-holder">
+                    <p class="bold">{{item.county}} County</p>
+                    <div class="swiper-item-horizontal-line"></div>
+                    <p>Daily Cases: {{item.confirmed_daily}}</p>
+                    <p>Total: {{item.confirmed}}</p>
+                  </view>
+
+                </view>
+              </swiper-item>
+        
+            </block>
+          </block>
+
+          <block wx:else>
+            <block wx:for="{{savedCountiesSwiperZero}}" wx:key="this">
+
+              <swiper-item class="swiper-item">
+                <view class="swiper-item-inner swiper-item-inner-{{item.riskLevel}}">
+                
+                  <view class="swiper-item-map-holder">
+                    <image src="../../assets/images/countyMaps/{{item.plainName}}-{{item.riskLevel}}.png" class="swiper-item-map-image" mode="widthFix"></image>
+                  </view>
+
+                  <view class="swiper-item-text-holder">
+                    <p class="bold">{{item.county}}</p>
+                    <div class="swiper-item-horizontal-line"></div>
+                    <p>Daily Cases: {{item.confirmed_daily}}</p>
+                    <p>Total: {{item.confirmed}}</p>
+                  </view>
+
+                </view>
+              </swiper-item>
+            </block>
+          </block>
+
+        </swiper>
+
+        <view class="open-county-list-holder">
+          <button class="button open-county-list-button" bindtap="openCountyList">
+
+            <block wx:if="{{ !openCountyListToggle }}">
+              <mp-icon type="field" icon="add2" color="{{ iconColorWhite }}" size="{{ iconSizeNormal }}"></mp-icon>
+              <p>Add County</p>
+            </block>
+
+            <block wx:else>
+              <mp-icon type="field" icon="close2" color="{{ iconColorWhite }}" size="{{ iconSizeNormal }}"></mp-icon>
+              <p>Close List</p>
+            </block>
+
+          </button>
+        </view>
+
+        <scroll-view class="checkbox-group-holder {{ checkboxGroupHolderAniEnter }} {{ checkboxGroupHolderAniExit }}" scroll-y="{{ true }}">
+          <checkbox-group bindchange="checkboxChange">
+            <block wx:for="{{ countyCheckboxItems }}" wx:key="this">
+            
+              <block wx:if="{{ item.checked }}">
+                <label clss="weui-cell weui-check__label selectedCheckbox">
+                  <view class="weui-cell__hd">
+                    <checkbox value="{{ item.value }}" checked="{{ item.checked }}" />
+                  </view>
+                  <view class="weui-cell__bd">{{ item.name }}</view>
+                </label>
+              </block>
+
+              <block wx:else>
+                <label clss="weui-cell weui-check__label">
+                  <view class="weui-cell__hd">
+                    <checkbox value="{{ item.value }}" checked="{{ item.checked }}" />
+                  </view>
+                  <view class="weui-cell__bd">{{ item.name }}</view>
+                </label>      
+              </block>
+
+            </block>
+          </checkbox-group>
+        </scroll-view>
+      </block>
+
+      <block wx:else>
+        <swiper class="swiper-container" indicator-dots="true" circular="true" previous-margin="70rpx" next-margin="70rpx" autoplay="{{true}}" interval="3000">
+          <block wx:for="{{savedCountiesSwiperZero}}" wx:key="this">
+
+            <swiper-item class="swiper-item" bindtap="getUserProfile">
+              <view class="swiper-item-inner swiper-item-inner-{{item.riskLevel}}">
+                
+                <view class="swiper-item-map-holder">
+                  <image src="../../assets/images/countyMaps/{{item.plainName}}-{{item.riskLevel}}.png" class="swiper-item-map-image" mode="widthFix"></image>
+                </view>
+
+                <view class="swiper-item-text-holder">
+                  <p class="bold">{{item.county}}</p>
+                  <div class="swiper-item-horizontal-line"></div>
+                  <p>Daily Cases: {{item.confirmed_daily}}</p>
+                  <p>Total: {{item.confirmed}}</p>
+                </view>
+
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+
+        <view class="open-county-list-holder">
+          <button class="button open-county-list-button" bindtap="getUserProfile">
+              <mp-icon type="field" icon="add2" color="{{ iconColorWhite }}" size="{{ iconSizeNormal }}"></mp-icon>
+              <p>Add County</p>
+          </button>
+        </view>
+      </block>
+
+    </view>
+  </view>
+
+</view>
+

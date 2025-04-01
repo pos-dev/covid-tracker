@@ -1,0 +1,236 @@
+/**index.wxss**/
+.home-header-section {
+  background-color: rgb(27, 27, 27);
+  background: linear-gradient(157deg, rgba(234, 170, 0, 1) 0%, rgba(157, 34, 53, 1) 5%, rgba(27, 27, 27, 1) 12%, rgba(27, 27, 27, 1) 70%, rgba(157, 34, 53, 1) 90%, rgba(234, 170, 0, 1) 100%);
+  border-bottom: 5rpx solid rgb(58, 58,58);
+}
+
+.home-header-image-holder {
+flex: 1 1 22%;
+margin: 0 auto;
+display: flex;
+align-items: center;
+}
+
+.home-header-image {
+width: 100%;
+}
+
+.home-header-text-holder {
+  display: flex;
+  align-items: center;
+  flex: 1 1 65%;
+  margin: 0 auto;
+  margin-left: 20rpx;
+}
+
+.user-login-section {
+  background-color: rgb(6, 48, 68);
+  height: 128rpx;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 20%;
+}
+
+.userinfo-name-text-hoolder {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 30%;
+  text-align: left;
+  margin-left: 20rpx;
+}
+
+.userinfo-signin-button {
+font-size: 28rpx;
+flex: 0 1 38%;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: rgb(13, 111, 156);
+}
+
+.userinfo-signout {
+  font-size: 28rpx;
+  flex: 0 1 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(9, 72, 102);
+  font-weight: bold;
+  }
+
+.saved-counties-section {
+  background-color: rgb(9, 72, 102);
+}
+
+.saved-counties-inner-section {
+  width: 100%;
+}
+
+.swiper-container {
+  display: flex;
+  width: 100vw;
+  margin: 0 auto;
+  text-align: center;
+  flex: 0 0 100%;
+  color: rgb(235, 235, 235);
+}
+
+.swiper-item {
+  display: flex;
+}
+
+.swiper-item-inner {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 30rpx;
+  background-color: grey;
+  padding-bottom: 0rpx;
+  transform: scaleY(0.1);
+  opacity: 0.0;
+  animation-name: swiper-item-inner-enter-ani;
+  transform-origin: bottom;
+  animation-duration: 0.35s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+}
+
+@keyframes swiper-item-inner-enter-ani {
+  0% {
+    transform: scaleY(0.1);
+    opacity: 0.0;
+  }
+
+  100% {
+    transform: scaleY(1.0);
+    opacity: 1.0;
+  }
+}
+
+.swiper-item-inner-safe {
+  background-color: rgb(1, 61, 1);
+  color: rgb(235, 235, 235);
+}
+
+.swiper-item-inner-warning {
+  background-color: rgb(104, 104, 1);
+  color: rgb(235, 235, 235);
+}
+
+.swiper-item-inner-risk {
+  background-color: rgb(117, 76, 1);
+  color: rgb(235, 235, 235);
+}
+
+.swiper-item-inner-danger {
+  background-color: rgb(107, 1, 1);
+  color: rgb(235, 235, 235);
+}
+
+swiper-item-map-holder {
+  display: flex;
+  flex: 1 1 50%;
+  width: 50%;
+  margin: 0 auto;
+  align-self: center;
+}
+
+.swiper-item-map-image {
+  width: 65%;
+  margin: 0 auto;
+  align-self: left;
+}
+
+.swiper-item-text-holder {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  text-align: left;
+  margin: auto  0 auto;
+  padding: 0 15rpx;
+  align-self: center;
+}
+
+.swiper-item-horizontal-line {
+  height: 9rpx;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin: 0.5vh 0;
+  width: 100%;
+}
+
+
+.open-county-list-holder {
+  display: flex;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 40rpx;
+}
+
+.open-county-list-button {
+  display: flex;
+  flex: 1 1 100%;
+  padding: 30rpx 0rpx;
+  background-color: rgb(9, 72, 102);
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-group-holder {
+  width: 75%;
+  margin: 0 auto;
+  height: 0vh;
+}
+
+.checkbox-group-holder-enter {
+  animation-name: checkbox-group-holder-enter-ani;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+  @keyframes checkbox-group-holder-enter-ani {
+    0% {
+      height: 0vh;
+    }
+    100% {
+      height: 50vh;
+    }
+  }
+
+.checkbox-group-holder-exit {
+  animation-name: checkbox-group-holder-exit-ani;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes checkbox-group-holder-exit-ani {
+  0% {
+    height: 50vh;
+  }
+  100% {
+    height: 0vh;
+  }
+}
+
+.selectedCheckbox {
+  background-color: rgb(16, 133, 107);
+}
+
+
+/* .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+.usermotto {
+  margin-top: 200px;
+}
+*/
